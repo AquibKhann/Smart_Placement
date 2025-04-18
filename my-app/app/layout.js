@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
             {/* footer */}
             <footer className="bg-muted/50 py-12">
               <div className="container mx-auto px-4 text-center text-gray-200 ">
-                <p>Made By Aquib Khan</p>
+                <p>Made By VIT</p>
               </div>
             </footer>
           </ThemeProvider>

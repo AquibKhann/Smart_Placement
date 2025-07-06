@@ -17,32 +17,26 @@ export const generateIndustryInsights = inngest.createFunction(
 
     for (const { industry } of industries) {
       for (const subIndustry of subIndustries) {
-        const prompt = `
-        You are an expert industry analyst.
-        
-        Analyze the current state of the "${subIndustry}" subindustry within the "${industry}" industry. 
-        Generate insights that are **strictly limited to the ${subIndustry} subindustry only** — do NOT include data, roles, skills, or trends from other domains such as Artificial Intelligence, Machine Learning, Data Science, etc., unless ${subIndustry} explicitly overlaps with them.
-        
-        Return the data strictly in the following JSON format:
-        {
-          "salaryRanges": [
-            { "role": "string", "min": number, "max": number, "median": number, "location": "string" }
-          ],
-          "growthRate": number,
-          "demandLevel": "High" | "Medium" | "Low",
-          "topSkills": ["skill1", "skill2", "skill3", "skill4", "skill5"],
-          "marketOutlook": "Positive" | "Neutral" | "Negative",
-          "keyTrends": ["trend1", "trend2", "trend3", "trend4", "trend5"],
-          "recommendedSkills": ["skill1", "skill2", "skill3", "skill4", "skill5"]
-        }
-        
-        IMPORTANT STRICT INSTRUCTIONS:
-        - Include ONLY job roles that are common and specific to the "${subIndustry}" subindustry.
-        - topSkills, keyTrends, and recommendedSkills must be **entirely relevant to the "${subIndustry}" subindustry**.
-        - Do NOT include generic or irrelevant roles, skills, or trends from outside this subindustry.
-        - Growth rate must be a percentage.
-        - Output ONLY the JSON object. No extra comments or markdown.
+        const prompt =  `
+          Analyze the current state of the ${industry} industry and provide insights in ONLY the following JSON format without any additional notes or explanations:
+          {
+            "salaryRanges": [
+              { "role": "string", "min": number, "max": number, "median": number, "location": "string" }
+            ],
+            "growthRate": number,
+            "demandLevel": "High" | "Medium" | "Low",
+            "topSkills": ["skill1", "skill2"],
+            "marketOutlook": "Positive" | "Neutral" | "Negative",
+            "keyTrends": ["trend1", "trend2"],
+            "recommendedSkills": ["skill1", "skill2"]
+          }
+          
+          IMPORTANT: Return ONLY the JSON. No additional text, notes, or markdown formatting.
+          Include at least 5 common roles for salary ranges.
+          Growth rate should be a percentage.
+          Include at least 5 skills and trends.
         `;
+
         
         
 
